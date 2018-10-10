@@ -2,3 +2,5 @@ git is a distributed version control system;
 git is a free software;
 6666;
 git has a mutable index called stage;
+
+Creatint a new branch is quick.
