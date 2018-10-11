@@ -84,6 +84,6 @@ git基础指令：
 	git push :refs/tags/<tagname>		//删除远程库的标签
 	
 	
-	
-	
+	git config --global color.ui true	//启用默认的颜色设置
+	git config --global color.ui false	//关闭默认的颜色设置
 	
