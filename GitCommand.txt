@@ -1,0 +1,89 @@
+查看Git用户名及修改信息：					
+	git config user.name
+	git config --global user.name "设置名称"
+	git config --global user.email "设置邮箱"
+	
+git基础指令：
+	git init 					//初始化仓库
+	git status 					//查看Git库当前状态
+	
+	git diff <filename>				//查看仓库和本地的不同，file文件名可选
+	git diff HEAD -- 文件名		//查看文件工作区和版本库区别
+	git log						//查看Git版本历史记录
+	git log	--pretty=oneline	//查看Git版本历史记录（简化，只看版本号和提交注释）
+	
+	git add <filename> 				//添加新增、修改文件到暂存区,file文件名可选
+	git commit -m "注释" 		//提交到本地仓库的当前分支
+	git pull 					//更新当前分支代码到最新
+	git push origin <BranchName>//推送到远程仓库分支
+	
+	git reflog					//查看命令历史（可找回历史记录查看近期提交的版本号）
+	
+	git reset --hard HEAD^  	//版本回退（HEAD^回退上一个、HEAD^^回退上上一个、往上100个版本HEAD~100……）
+	git reset --hard commit_id	//通过提交的id 回退到某一个提交的版本位置
+	git reset HEAD <filename>	//把	（暂存区的修改撤销掉(unstage)，重新放回工作区）		HEAD表示最新的版本 file文件名可选
+	git reset --soft 版本库ID	//仅仅只是撤销已提交的版本库，不会修改暂存区和工作区	
+	git reset --mixed 版本库ID	//仅仅只是撤销已提交的版本库和暂存区，不会修改工作区	
+	git reset --hard 版本库ID	//彻底将工作区、暂存区和版本库记录恢复到指定的版本库
+
+	git rm --cache <filename>	//删除暂存区文件
+	git checkout -- <filename>	//把文件在	（工作区的修改全部撤销）	
+		checkout是用版本库里的版本替换工作区的版本
+		这里有两种情况：
+			一种是 文件 自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+			一种是 文件 已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+	git rm <filename>					//删除文件，commit从版本库删除、checkeout找回（用版本库版本替换工作区版本）	
+	
+本地仓与远程仓库GitHub关联
+	//创建SSH Key	里面有id_rsa（私钥）和id_rsa.pub（公钥）两个文件（C:\Users\Jasper\.ssh）
+	ssh-keygen -t rsa -C "自己的邮箱账号"
+	
+	要关联一个远程库，使用命令git remote add origin git@github.com:czl451448608/czl_repository.git；
+	关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+	此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+	
+	git clone git@github.com:czl451448608/czl_repository.git	//从远程库克隆一个本地库到本机
+
+分支操作：
+	git checkout -b <BranchName>		//-b创建并切换 等同于 git branch 分支名===>>>git checkout 分支名
+	git branch <BranchName>				//创建分支
+	git checkout <BranchName>			//切换分支
+	git branch							//查看分支
+	git branch -a						//查看所有分支（包含远程库）
+	
+	git branch -d <BranchName>			//删除本地分支
+	git branch -D <BranchName>			//删除分支（D 强行删除没有合并过的分支）
+	git push origin :<BranchName>		//删除远程分支
+	
+	git log --graph --pretty=oneline --abbrev-commit			//查看分支合并图。
+	
+	git merge <BranchName>				//合并指定分支到当前分支（Fast forward模式 快速合并）
+	git merge --no-ff -m 注释 <BranchName>	用普通模式合并
+	
+	git stash							//隐藏存储当前工作区
+	git stash list						//查看存储
+	git stash apply						//回到工作现场(stash不删除)
+	git stash pop						//回到工作现场(stash删除)
+
+
+	git remote -v						//查看远程库信息
+	从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
+	在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+	建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
+	从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+	
+标签使用
+	git tag <tagname> commitid			//用于新建一个标签，默认为HEAD，也可以指定一个commit id	(选填)
+	git tag -a <tagname> -m <备注信息>//可以指定标签信息
+	git tag 							//展示所有本地库标签
+	git show-ref --tag					//展示远程库所有标签
+	git show <tagname> 					//展示标签对应详细信息
+	git push origin <tagname> 			//推送某一个标签至远程库
+	git push origin --tags				//推送所有标签至远程库
+	git tag -d <tagname>				//删除一个本地标签
+	git push :refs/tags/<tagname>		//删除远程库的标签
+	
+	
+	
+	
+	
