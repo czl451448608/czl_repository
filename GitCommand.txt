@@ -84,6 +84,17 @@ git基础指令：
 	git push :refs/tags/<tagname>		//删除远程库的标签
 	
 	
-	git config --global color.ui true	//启用默认的颜色设置
-	git config --global color.ui false	//关闭默认的颜色设置
+	git config --global color.ui true	//git界面启用默认的颜色设置
+	git config --global color.ui false	//git界面关闭默认的颜色设置
+	
+忽略文件
+	生成.gitignore文件，把需要忽略的格式或者文件放入
+	例如 ==>>>	Python编译产生的.pyc、.pyo、dist等文件或目录：
+		# Python:
+		*.py[cod]
+		*.so
+		*.egg
+		*.egg-info
+		dist
+		build
 	
