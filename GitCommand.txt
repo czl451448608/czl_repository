@@ -7,12 +7,17 @@ git基础指令：
 	git init 					//初始化仓库
 	git status 					//查看Git库当前状态
 	
-	git diff <filename>				//查看仓库和本地的不同，file文件名可选
+	git diff <filename>			//查看仓库和本地的不同，file文件名可选
 	git diff HEAD -- 文件名		//查看文件工作区和版本库区别
 	git log						//查看Git版本历史记录
 	git log	--pretty=oneline	//查看Git版本历史记录（简化，只看版本号和提交注释）
+	q							//跳出当前查询日志或比对的操作
 	
-	git add <filename> 				//添加新增、修改文件到暂存区,file文件名可选
+	git add <filename> 			//添加新增、修改文件到暂存区,file文件名可选
+	git add .					//把工作时的所有变化提交到暂存区，包括文件内容修改(modified)以及新文件(new)，但不包括被删除的文件。
+	git add -u					//仅监控已经被add的文件（即tracked file），他会将被修改的文件提交到暂存区。add -u 不会提交新文件（untracked file）。（git add --update的缩写）
+	git add -A					//是上面两个功能的合集(git add --all的缩写）
+	
 	git commit -m "注释" 		//提交到本地仓库的当前分支
 	git pull 					//更新当前分支代码到最新
 	git push origin <BranchName>//推送到远程仓库分支
@@ -21,13 +26,17 @@ git基础指令：
 	
 	git reset --hard HEAD^  	//版本回退（HEAD^回退上一个、HEAD^^回退上上一个、往上100个版本HEAD~100……）
 	git reset --hard commit_id	//通过提交的id 回退到某一个提交的版本位置
+	
 	git reset HEAD <filename>	//把	（暂存区的修改撤销掉(unstage)，重新放回工作区）		HEAD表示最新的版本 file文件名可选
+	git checkout -- <filename>	//把文件在	（工作区的修改全部撤销）
+	
 	git reset --soft 版本库ID	//仅仅只是撤销已提交的版本库，不会修改暂存区和工作区	
 	git reset --mixed 版本库ID	//仅仅只是撤销已提交的版本库和暂存区，不会修改工作区	
 	git reset --hard 版本库ID	//彻底将工作区、暂存区和版本库记录恢复到指定的版本库
 
 	git rm --cache <filename>	//删除暂存区文件
-	git checkout -- <filename>	//把文件在	（工作区的修改全部撤销）	
+	
+		
 		checkout是用版本库里的版本替换工作区的版本
 		这里有两种情况：
 			一种是 文件 自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
