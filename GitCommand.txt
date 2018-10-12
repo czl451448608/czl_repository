@@ -106,4 +106,5 @@ git基础指令：
 		*.egg-info
 		dist
 		build
-	
+别名
+	git config --global alias.<别名> <指令>
