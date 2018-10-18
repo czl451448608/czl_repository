@@ -73,8 +73,10 @@ git基础指令：
 	git stash list						//查看存储
 	git stash apply						//回到工作现场(stash不删除)
 	git stash pop						//回到工作现场(stash删除)
-
-
+	
+	//把本地新建分支和远程分支相关联
+	git branch --set-upstream-to=origin/<originBranchName> <localBranchName>
+	
 	git remote -v						//查看远程库信息
 	从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
 	在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
@@ -83,7 +85,7 @@ git基础指令：
 	
 标签使用
 	git tag <tagname> commitid			//用于新建一个标签，默认为HEAD，也可以指定一个commit id	(选填)
-	git tag -a <tagname> -m <备注信息>//可以指定标签信息
+	git tag -a <tagname> -m <备注信息>	//可以指定标签信息
 	git tag 							//展示所有本地库标签
 	git show-ref --tag					//展示远程库所有标签
 	git show <tagname> 					//展示标签对应详细信息
@@ -95,7 +97,7 @@ git基础指令：
 	
 	git config --global color.ui true	//git界面启用默认的颜色设置
 	git config --global color.ui false	//git界面关闭默认的颜色设置
-	
+
 忽略文件
 	生成.gitignore文件，把需要忽略的格式或者文件放入
 	例如 ==>>>	Python编译产生的.pyc、.pyo、dist等文件或目录：
@@ -106,5 +108,7 @@ git基础指令：
 		*.egg-info
 		dist
 		build
-别名
+		
+给指令设置别名
 	git config --global alias.<别名> <指令>
+	--global参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用。
